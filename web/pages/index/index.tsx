@@ -54,7 +54,7 @@ function PromptCombinerIndex():JSX.Element
       </div>
     </div>
     <div className="output-zone">
-      <h1>Combined Prompt</h1>
+      <h1>Combined Prompt Output</h1>
       {r_outputBoxes()}
     </div>
   </>;
