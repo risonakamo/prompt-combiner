@@ -9,8 +9,11 @@ function PromptCombinerIndex():JSX.Element
       <div className="info-box">
         <p>Enter an expanded prompt in the below input.</p>
       </div>
-      <h1>Prompt Input</h1>
-      <textarea></textarea>
+      <div className="inner-input-zone">
+        <h1>Prompt Input</h1>
+        <textarea className="input-textarea">
+        </textarea>
+      </div>
     </div>
     <div className="output-zone">
       <h1>Combined Prompt</h1>
