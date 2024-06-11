@@ -17,10 +17,19 @@ function PromptCombinerIndex():JSX.Element
     </div>
     <div className="output-zone">
       <h1>Combined Prompt</h1>
-      <div className="copy-button">
-        Copy
+      <div className="output-box">
+        <p className="output-string">hello, this, is, an, output</p>
+        <div className="copy-button button1">
+          Copy
+        </div>
       </div>
-      <p>hello, this, is, an, output</p>
+      <div className="output-box">
+        <p className="output-string">hello, this, is, an, another, output</p>
+        <div className="copy-button button1">
+          Copy
+        </div>
+        <p className="copied-indicator">copied</p>
+      </div>
     </div>
   </>;
 }
