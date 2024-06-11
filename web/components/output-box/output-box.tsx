@@ -1,9 +1,9 @@
 import {useState} from "react";
+import copy from "copy-to-clipboard";
 
 import {Button1} from "@/components/button1/button1";
 
 import "./output-box.styl";
-import copy from "copy-to-clipboard";
 
 interface OutputBoxProps
 {
@@ -26,14 +26,15 @@ export function OutputBox(props:OutputBoxProps):JSX.Element
    *  copied while above 1. */
   function r_copyCount():JSX.Element
   {
+    // if no copy count, show nothing
     if (!copyCount)
     {
       return <></>;
     }
 
+    // if copy count above 1, show the xnumber, like x2. if it is 1, don't show it.
     var copiedCountText:string="";
-
-    if (copyCount>=1)
+    if (copyCount>1)
     {
       copiedCountText=`x${copyCount}`;
     }
