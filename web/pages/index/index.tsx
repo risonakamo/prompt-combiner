@@ -1,6 +1,7 @@
 import {createRoot} from "react-dom/client";
 
 import "./index.styl";
+import {OutputBox} from "@/components/output-box/output-box";
 
 function PromptCombinerIndex():JSX.Element
 {
@@ -17,19 +18,7 @@ function PromptCombinerIndex():JSX.Element
     </div>
     <div className="output-zone">
       <h1>Combined Prompt</h1>
-      <div className="output-box">
-        <p className="output-string">hello, this, is, an, output</p>
-        <div className="copy-button button1">
-          Copy
-        </div>
-      </div>
-      <div className="output-box">
-        <p className="output-string">hello, this, is, an, another, output</p>
-        <div className="copy-button button1">
-          Copy
-        </div>
-        <p className="copied-indicator">copied</p>
-      </div>
+      <OutputBox text="hello, this, is, an, output"/>
     </div>
   </>;
 }
