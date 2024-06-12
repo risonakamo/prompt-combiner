@@ -9,6 +9,7 @@ import {LogLevel,RollupLog,LogHandler} from "rollup";
 declare const __dirname:string;
 
 export default defineConfig({
+    base:"",
     root:`${__dirname}/web/html`,
     mode:"development",
 
