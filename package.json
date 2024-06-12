@@ -1,6 +1,6 @@
 {
   "name": "prompt-combiner",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "author": "risonakamo",
   "scripts": {
     "build": "vite build -w false",
