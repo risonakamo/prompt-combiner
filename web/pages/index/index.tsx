@@ -1,14 +1,16 @@
 import {createRoot} from "react-dom/client";
-import React, {useMemo, useState} from "react";
+import React, {useEffect, useMemo, useState} from "react";
 import _ from "lodash";
 
 import {OutputBox} from "@/components/output-box/output-box";
 import {processExpandedPrompt} from "@/lib/prompt-parse";
+import {getLastPrompt, setLastPrompt} from "@/lib/storage";
 
 import "./index.styl";
 
 function PromptCombinerIndex():JSX.Element
 {
+  // --- states
   /** content of the main prompt box */
   const [mainPromptContent,setMainPromptContent]=useState<string|undefined>(undefined);
 
@@ -22,12 +24,33 @@ function PromptCombinerIndex():JSX.Element
     return processExpandedPrompt(mainPromptContent);
   },[mainPromptContent]);
 
-  /** user changing the main prompt box. update the value. */
+
+  // --- effects
+  /** on page load, if there is a prompt saved in storage, set it as the main prompt */
+  useEffect(()=>{
+    const savedPrompt:string=getLastPrompt();
+
+    if (savedPrompt)
+    {
+      setMainPromptContent(savedPrompt);
+    }
+  },[]);
+
+
+  // --- debounced
+  const setLastPrompt_delayed=_.debounce(setLastPrompt,500);
+
+
+  // --- handlers
+  /** user changing the main prompt box. update the value. also set the last prompt with debounce */
   function h_mainPromptChange(e:React.ChangeEvent<HTMLTextAreaElement>):void
   {
     setMainPromptContent(e.currentTarget.value);
+    setLastPrompt_delayed(e.currentTarget.value);
   }
 
+
+  // --- renders
   /** render the output boxes based on the current split prompts. shows text if there are no
    *  outputs */
   function r_outputBoxes():JSX.Element[]
@@ -42,6 +65,8 @@ function PromptCombinerIndex():JSX.Element
     });
   }
 
+
+  // --- main render
   return <>
     <div className="input-zone">
       <div className="info-box">
